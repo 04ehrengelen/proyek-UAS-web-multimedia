@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak 3D - Profil Pengguna</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container container-custom">
+            <a class="navbar-brand" href="index.html">⬡ lapak<span>3D</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Lelang</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="upload-asset.html">Jual Aset</a></li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <a href="index.html#filter" class="nav-icon-link me-3"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="cart.html" class="nav-icon-link me-4 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+                    </a>
+                    
+                    <!-- Guest -->
+                    <button id="nav-login-btn" class="btn btn-primary-custom fw-bold" onclick="loginSimulation()">Masuk / Daftar</button>
+                    
+                    <!-- Logged In -->
+                    <div class="dropdown" id="nav-user-dropdown" style="display:none;">
+                        <button class="btn btn-outline-primary-custom dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="color:var(--text-primary); border-color:var(--border);">
+                            <i class="fa-solid fa-user-circle me-2 text-primary-custom"></i><span id="nav-user-name">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom active" href="profile.html"><i class="fa-regular fa-id-badge me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="my-bids.html"><i class="fa-solid fa-gavel me-2"></i> Riwayat Tawar</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="upload-asset.html"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Upload Aset</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item dropdown-item-custom text-danger" href="#" onclick="logoutSimulation()"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container container-custom mt-5 mb-5" style="min-height: 60vh;">
+        <!-- Header Profil -->
+        <div class="p-4 rounded-4 mb-4 shadow-sm" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+            <div class="d-flex flex-column flex-md-row align-items-center text-center text-md-start">
+                <div id="profile-avatar" class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center mb-3 mb-md-0 me-md-4 shadow" style="width: 100px; height: 100px; font-size: 3rem; font-weight: 800;">
+                    <!-- Diisi Inisial via JS -->
+                </div>
+                <div class="flex-grow-1">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start mb-1">
+                        <h2 id="profile-name" class="fw-bolder m-0 me-3">User Name</h2>
+                        <span id="creator-badge" class="badge bg-success px-2 py-1 fs-7 rounded-pill" style="display:none;"><i class="fa-solid fa-check-circle me-1"></i> Kreator</span>
+                    </div>
+                    <p id="profile-email" class="text-muted mb-3">user@example.com</p>
+                    <div class="d-flex gap-2 justify-content-center justify-content-md-start">
+                        <button id="btn-edit-profile" class="btn btn-sm btn-outline-primary-custom px-3 rounded-pill fw-semibold hover-lift"><i class="fa-solid fa-pen-to-square me-1"></i> Edit Profil</button>
+                        <button id="btn-logout" class="btn btn-sm btn-outline-danger px-3 rounded-pill fw-semibold hover-lift"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Stat Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 text-center shadow-sm hover-lift" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+                    <i class="fa-solid fa-bag-shopping fs-2 text-primary-light mb-2"></i>
+                    <h2 id="stat-orders" class="fw-bolder mb-0 text-white">0</h2>
+                    <div class="text-muted fs-7 fw-semibold">Total Pesanan Selesai</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 text-center shadow-sm hover-lift" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+                    <i class="fa-solid fa-gavel fs-2 text-warning mb-2"></i>
+                    <h2 id="stat-bids" class="fw-bolder mb-0 text-white">0</h2>
+                    <div class="text-muted fs-7 fw-semibold">Lelang yang Diikuti</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 rounded-4 text-center shadow-sm hover-lift" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+                    <i class="fa-solid fa-trophy fs-2 text-success mb-2"></i>
+                    <h2 id="stat-wins" class="fw-bolder mb-0 text-white">0</h2>
+                    <div class="text-muted fs-7 fw-semibold">Lelang Dimenangkan</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <ul class="nav nav-pills mb-4 gap-2 border-bottom border-secondary pb-3" id="profileTabs" role="tablist" style="border-color: rgba(51, 65, 85, 0.5) !important;">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active px-4 py-2 rounded-pill fw-bold" id="history-tab" data-bs-toggle="pill" data-bs-target="#history" type="button" role="tab" aria-controls="history" aria-selected="true" style="border: 1px solid var(--primary);">
+                    <i class="fa-solid fa-clock-rotate-left me-2"></i> Riwayat Pembelian
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link px-4 py-2 rounded-pill fw-bold" id="creator-tab" data-bs-toggle="pill" data-bs-target="#creator" type="button" role="tab" aria-controls="creator" aria-selected="false" style="border: 1px solid var(--border); color: var(--text-muted);">
+                    <i class="fa-solid fa-store me-2"></i> Status Kreator
+                </button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="profileTabsContent">
+            <!-- Tab Riwayat Pembelian -->
+            <div class="tab-pane fade show active" id="history" role="tabpanel" aria-labelledby="history-tab">
+                <div id="order-history" class="d-flex flex-column gap-3">
+                    <!-- Javascript will render orders here -->
+                </div>
+            </div>
+
+            <!-- Tab Status Kreator -->
+            <div class="tab-pane fade" id="creator" role="tabpanel" aria-labelledby="creator-tab">
+                <div id="creator-content">
+                    <!-- Javascript will render creator status here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom mt-auto">
+        <div class="container container-custom">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bolder fs-4">⬡ lapak<span style="color:var(--primary);">3D</span></h5>
+                    <p class="footer-desc mt-3">Marketplace aset 3D premium untuk kreator dan developer. Temukan model berkualitas tinggi untuk game, animasi, arsitektur, dan metaverse.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold">Navigasi</h5>
+                    <a href="index.html" class="footer-link">Beranda</a>
+                    <a href="index.html#filter" class="footer-link">Eksplorasi Katalog</a>
+                    <a href="upload-asset.html" class="footer-link">Jual Aset 3D</a>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="fw-bold">Kontak Kami</h5>
+                    <p class="footer-desc mb-2"><i class="fa-solid fa-envelope me-2 text-muted"></i> support@lapak3d.com</p>
+                    <p class="footer-desc"><i class="fa-solid fa-location-dot me-2 text-muted"></i> Jakarta Selatan, Indonesia</p>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4" style="border-color:var(--border);">
+            <div class="text-center text-muted fs-7">
+                &copy; 2026 Lapak 3D. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Global JS -->
+    <script src="js/main.js"></script>
+    <!-- Page Specific JS -->
+    <script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak 3D - Beranda</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .fs-7 {
+            font-size: 0.85rem;
+        }
+
+        .filter-tipe-btn {
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .filter-tipe-btn.active {
+            opacity: 1;
+            border-width: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container container-custom">
+            <a class="navbar-brand" href="index.html">⬡ lapak<span>3D</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active fw-semibold" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#filter">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#filter">Lelang</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="upload-asset.html">Jual Aset</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <a href="#filter" class="nav-icon-link me-3"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="cart.html" class="nav-icon-link me-4 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+                    </a>
+
+                    <!-- Guest -->
+                    <button id="nav-login-btn" class="btn btn-primary-custom fw-bold" onclick="loginSimulation()">Masuk
+                        / Daftar</button>
+
+                    <!-- Logged In -->
+                    <div class="dropdown" id="nav-user-dropdown" style="display:none;">
+                        <button class="btn btn-outline-primary-custom dropdown-toggle fw-bold" type="button"
+                            data-bs-toggle="dropdown" style="color:var(--text-primary); border-color:var(--border);">
+                            <i class="fa-solid fa-user-circle me-2 text-primary-custom"></i><span
+                                id="nav-user-name">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="profile.html"><i
+                                        class="fa-regular fa-id-badge me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="my-bids.html"><i
+                                        class="fa-solid fa-gavel me-2"></i> Riwayat Tawar</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="upload-asset.html"><i
+                                        class="fa-solid fa-cloud-arrow-up me-2"></i> Upload Aset</a></li>
+                            <li>
+                                <hr class="dropdown-divider border-secondary">
+                            </li>
+                            <li><a class="dropdown-item dropdown-item-custom text-danger" href="#"
+                                    onclick="logoutSimulation()"><i class="fa-solid fa-right-from-bracket me-2"></i>
+                                    Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Promo -->
+    <section class="banner-promo mt-4 mb-5">
+        <div class="container container-custom">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center rounded-4 overflow-hidden position-relative p-4 p-md-5"
+                style="background: linear-gradient(135deg, var(--primary-dark), var(--primary)); min-height: 200px;">
+                <!-- Dekorasi -->
+                <div
+                    style="position:absolute; right:-50px; top:-50px; width:250px; height:250px; background:rgba(255,255,255,0.1); border-radius:50%; z-index:0;">
+                </div>
+                <div
+                    style="position:absolute; right:120px; bottom:-40px; width:150px; height:150px; background:rgba(255,255,255,0.15); transform:rotate(45deg); z-index:0;">
+                </div>
+
+                <div class="position-relative z-1 mb-3 mb-md-0">
+                    <h2 class="text-white fw-bolder mb-2" style="font-size: 2.2rem;">🎉 Promo Spesial!</h2>
+                    <p class="text-white opacity-75 mb-0 fs-5">Diskon 50% model 3D pilihan. Kode: <strong
+                            class="bg-white text-primary-dark px-2 py-1 rounded ms-1">LAPAK3D50</strong></p>
+                </div>
+                <div class="position-relative z-1">
+                    <a href="#filter"
+                        class="btn bg-white fw-bold text-primary-dark rounded-pill px-4 py-3 shadow-sm hover-lift">Belanja
+                        Sekarang <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Panel -->
+    <section id="filter" class="mb-4">
+        <div class="container container-custom">
+            <div class="row g-3 align-items-center p-3 rounded-4"
+                style="background-color: var(--bg-card); border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                <div class="col-lg-3 col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 border-secondary text-muted"><i
+                                class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" id="search-input"
+                            class="form-control border-start-0 border-secondary text-white"
+                            style="background-color: transparent;" placeholder="Cari aset...">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <select id="filter-kategori" class="form-select border-secondary text-white"
+                        style="background-color: transparent;">
+                        <option value="Semua" class="text-dark">Semua Kategori</option>
+                        <option value="Karakter" class="text-dark">Karakter</option>
+                        <option value="Kendaraan" class="text-dark">Kendaraan</option>
+                        <option value="Furniture" class="text-dark">Furniture</option>
+                        <option value="Aksesoris" class="text-dark">Aksesoris</option>
+                    </select>
+                </div>
+                <div class="col-lg-5 col-md-12">
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-center" id="filter-tipe-container">
+                        <button class="btn btn-sm btn-outline-light filter-tipe-btn active"
+                            data-tipe="Semua">Semua</button>
+                        <button class="btn btn-sm btn-outline-success filter-tipe-btn" data-tipe="free">Gratis</button>
+                        <button class="btn btn-sm filter-tipe-btn"
+                            style="border-color: var(--primary-light); color: var(--primary-light);"
+                            data-tipe="paid">Berbayar</button>
+                        <button class="btn btn-sm btn-outline-warning filter-tipe-btn"
+                            data-tipe="auction">Lelang</button>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-12">
+                    <select id="filter-sort" class="form-select border-secondary text-white"
+                        style="background-color: transparent;">
+                        <option value="default" class="text-dark">Sort: Default</option>
+                        <option value="termurah" class="text-dark">Harga Termurah</option>
+                        <option value="termahal" class="text-dark">Harga Termahal</option>
+                        <option value="nama-asc" class="text-dark">Nama A-Z</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="mb-5 pb-5">
+        <div class="container container-custom">
+            <h3 class="fw-bold mb-4">Semua Aset</h3>
+            <div id="product-grid" class="product-grid">
+                <!-- Data dari JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-custom">
+        <div class="container container-custom">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bolder fs-4">⬡ lapak<span style="color:var(--primary);">3D</span></h5>
+                    <p class="footer-desc mt-3">Marketplace aset 3D premium untuk kreator dan developer. Temukan model
+                        berkualitas tinggi untuk game, animasi, arsitektur, dan metaverse.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold">Navigasi</h5>
+                    <a href="index.html" class="footer-link">Beranda</a>
+                    <a href="#filter" class="footer-link">Eksplorasi Katalog</a>
+                    <a href="upload-asset.html" class="footer-link">Jual Aset 3D</a>
+                    <a href="#" class="footer-link">Syarat & Ketentuan</a>
+                    <a href="#" class="footer-link">Kebijakan Privasi</a>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="fw-bold">Kontak Kami</h5>
+                    <p class="footer-desc mb-2"><i class="fa-solid fa-envelope me-2 text-muted"></i> support@lapak3d.com
+                    </p>
+                    <p class="footer-desc mb-2"><i class="fa-brands fa-whatsapp me-2 text-muted"></i> +62 812 3456 7890
+                    </p>
+                    <p class="footer-desc"><i class="fa-solid fa-location-dot me-2 text-muted"></i> Jakarta Selatan,
+                        Indonesia</p>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4" style="border-color:var(--border);">
+            <div class="text-center text-muted fs-7">
+                &copy; 2026 Lapak 3D. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Global JS -->
+    <script src="js/main.js"></script>
+    <!-- Page Specific JS -->
+    <script src="js/index.js"></script>
+</body>
+
+</html>

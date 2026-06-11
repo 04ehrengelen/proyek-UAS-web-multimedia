@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak 3D - Pembayaran QRIS</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container container-custom">
+            <a class="navbar-brand" href="index.html">⬡ lapak<span>3D</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Lelang</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="upload-asset.html">Jual Aset</a></li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <a href="index.html#filter" class="nav-icon-link me-3"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="cart.html" class="nav-icon-link me-4 position-relative">
+                        <i class="fa-solid fa-cart-shopping text-primary-light"></i>
+                        <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+                    </a>
+                    
+                    <!-- Guest -->
+                    <button id="nav-login-btn" class="btn btn-primary-custom fw-bold" onclick="loginSimulation()">Masuk / Daftar</button>
+                    
+                    <!-- Logged In -->
+                    <div class="dropdown" id="nav-user-dropdown" style="display:none;">
+                        <button class="btn btn-outline-primary-custom dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="color:var(--text-primary); border-color:var(--border);">
+                            <i class="fa-solid fa-user-circle me-2 text-primary-custom"></i><span id="nav-user-name">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="profile.html"><i class="fa-regular fa-id-badge me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="my-bids.html"><i class="fa-solid fa-gavel me-2"></i> Riwayat Tawar</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="upload-asset.html"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Upload Aset</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item dropdown-item-custom text-danger" href="#" onclick="logoutSimulation()"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container container-custom mt-5 mb-5" style="min-height: 60vh;">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="p-4 p-md-5 rounded-4 shadow-lg text-center" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+                    <h3 class="fw-bolder mb-3 text-white">Pembayaran QRIS</h3>
+                    <p class="text-muted mb-4">Silakan scan kode QRIS di bawah ini menggunakan aplikasi e-wallet Anda.</p>
+                    
+                    <div class="bg-white p-3 rounded-4 mx-auto mb-4" style="max-width: 250px;">
+                        <img src="assets/qris-placeholder.png" alt="QRIS" class="img-fluid rounded">
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom border-secondary" style="border-color: rgba(51, 65, 85, 0.5) !important;">
+                        <span class="fs-5 text-muted">Total Pembayaran</span>
+                        <span id="payment-total" class="fs-3 fw-bolder text-primary-light">Rp 0</span>
+                    </div>
+
+                    <button id="btn-confirm-payment" class="btn btn-primary-custom w-100 py-3 rounded-3 fw-bold fs-5 shadow-sm hover-lift mb-3"><i class="fa-solid fa-check-circle me-2"></i> Konfirmasi Pembayaran</button>
+                    <a href="cart.html" class="btn btn-outline-secondary text-white w-100 py-2 rounded-3 fw-semibold" style="border-color: var(--border);"><i class="fa-solid fa-arrow-left me-2"></i> Kembali</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-custom mt-auto">
+        <div class="container container-custom">
+            <div class="text-center text-muted fs-7">
+                &copy; 2026 Lapak 3D. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Global JS -->
+    <script src="js/main.js"></script>
+    <!-- Page Specific JS -->
+    <script src="js/payment.js"></script>
+</body>
+</html>

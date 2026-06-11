@@ -1,0 +1,318 @@
+[
+  {
+    "id": 1,
+    "name": "Fantasy Sword",
+    "creator": "SwordCraft3D",
+    "category": "Aksesoris",
+    "type": "free",
+    "price": 0,
+    "description": "Pedang fantasi dengan desain elegan dan detail tekstur tinggi. Cocok untuk game RPG bertema medieval.",
+    "tags": [
+      "sword",
+      "fantasy",
+      "weapon"
+    ],
+    "model": "assets/models/fantasy_sword/scene.glb",
+    "thumbnail": "assets/thumbnails/fantasy_sword.jpg",
+    "format": [
+      "GLTF",
+      "OBJ"
+    ],
+    "polycount": "8.2K",
+    "rating": 4.7,
+    "reviews": 134,
+    "downloads": 2891,
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Sport Car 2025",
+    "creator": "VroomStudio",
+    "category": "Kendaraan",
+    "type": "paid",
+    "price": 550000,
+    "description": "Mobil sport futuristik dengan detail eksterior dan interior lengkap. Tekstur PBR resolusi tinggi.",
+    "tags": [
+      "car",
+      "vehicle",
+      "sport"
+    ],
+    "model": "assets/models/sport_car/scene.glb",
+    "thumbnail": "assets/thumbnails/sport_car.jpg",
+    "format": [
+      "GLB",
+      "FBX"
+    ],
+    "polycount": "45.3K",
+    "rating": 4.9,
+    "reviews": 87,
+    "downloads": 0,
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Exclusive Mech Robot",
+    "creator": "MechForge",
+    "category": "Karakter",
+    "type": "auction",
+    "price": 0,
+    "startingBid": 500000,
+    "currentBid": 650000,
+    "bidCount": 9,
+    "auctionEndTime": "2026-05-13T12:27:57",
+    "description": "Robot mech eksklusif dengan desain cyberpunk mendetail. Animasi idle, walk, attack.",
+    "tags": [
+      "robot",
+      "mech",
+      "cyberpunk"
+    ],
+    "model": "assets/models/mech_robot/scene.glb",
+    "thumbnail": "assets/thumbnails/mech_robot.jpg",
+    "format": [
+      "GLTF",
+      "FBX"
+    ],
+    "polycount": "92.1K",
+    "rating": 5,
+    "reviews": 43,
+    "downloads": 0,
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Dragon Statue",
+    "creator": "MythCraft",
+    "category": "Aksesoris",
+    "type": "auction",
+    "price": 0,
+    "startingBid": 200000,
+    "currentBid": 275000,
+    "bidCount": 5,
+    "auctionEndTime": "2026-05-13T12:27:57",
+    "description": "Patung naga dengan ukiran detail terinspirasi mitologi Asia. Efek moss dan weathering realistis.",
+    "tags": [
+      "dragon",
+      "statue",
+      "fantasy"
+    ],
+    "model": "assets/models/dragon_statue/scene.glb",
+    "thumbnail": "assets/thumbnails/dragon_statue.jpg",
+    "format": [
+      "GLB",
+      "OBJ"
+    ],
+    "polycount": "38.7K",
+    "rating": 4.8,
+    "reviews": 29,
+    "downloads": 0,
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Knight Character",
+    "creator": "HeroForge3D",
+    "category": "Karakter",
+    "type": "paid",
+    "price": 320000,
+    "description": "Karakter ksatria medieval dengan armor lengkap. Rigged, siap animasi, kompatibel Unity & Unreal.",
+    "tags": [
+      "knight",
+      "character",
+      "warrior"
+    ],
+    "model": "assets/models/knight_character/scene.glb",
+    "thumbnail": "assets/thumbnails/knight_character.jpg",
+    "format": [
+      "GLTF",
+      "FBX"
+    ],
+    "polycount": "24.6K",
+    "rating": 4.6,
+    "reviews": 112,
+    "downloads": 0,
+    "featured": true
+  },
+  {
+    "id": 6,
+    "name": "Low Poly Tree",
+    "creator": "NatureVibes",
+    "category": "Furniture",
+    "type": "free",
+    "price": 0,
+    "description": "Pack 5 pohon low poly: oak, pine, birch, sakura, palm. Ideal untuk game mobile atau stylized projects.",
+    "tags": [
+      "tree",
+      "nature",
+      "lowpoly"
+    ],
+    "model": "assets/models/low_poly_tree/scene.glb",
+    "thumbnail": "assets/thumbnails/low_poly_tree.jpg",
+    "format": [
+      "GLTF",
+      "OBJ"
+    ],
+    "polycount": "3.1K",
+    "rating": 4.5,
+    "reviews": 298,
+    "downloads": 7821,
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Simple Rock",
+    "creator": "PropMaster",
+    "category": "Aksesoris",
+    "type": "free",
+    "price": 0,
+    "description": "Set 4 batu dengan ukuran berbeda. Tekstur PBR 2K, normal map detail. Cocok untuk outdoor scene.",
+    "tags": [
+      "rock",
+      "stone",
+      "prop"
+    ],
+    "model": "assets/models/simple_rock/scene.glb",
+    "thumbnail": "assets/thumbnails/simple_rock.jpg",
+    "format": [
+      "GLB",
+      "OBJ"
+    ],
+    "polycount": "2.4K",
+    "rating": 4.3,
+    "reviews": 445,
+    "downloads": 12043,
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Basic Cube Character",
+    "creator": "PixelCraft",
+    "category": "Karakter",
+    "type": "free",
+    "price": 0,
+    "description": "Karakter cube-based lucu dan serbaguna. Rigged penuh, animasi walk/run/jump/idle. Ringan untuk game mobile.",
+    "tags": [
+      "character",
+      "cube",
+      "cartoon"
+    ],
+    "model": "assets/models/basic_cube_character/scene.glb",
+    "thumbnail": "assets/thumbnails/basic_cube_character.jpg",
+    "format": [
+      "GLTF",
+      "FBX"
+    ],
+    "polycount": "1.2K",
+    "rating": 4.4,
+    "reviews": 567,
+    "downloads": 15234,
+    "featured": false
+  },
+  {
+    "id": 9,
+    "name": "Sci-fi Rifle",
+    "creator": "WeaponLab",
+    "category": "Aksesoris",
+    "type": "paid",
+    "price": 150000,
+    "description": "Senapan sci-fi futuristik dengan desain modular. Tekstur metallic PBR, efek muzzle flash. Siap FPS.",
+    "tags": [
+      "weapon",
+      "gun",
+      "scifi"
+    ],
+    "model": "assets/models/sci_fi_rifle/scene.glb",
+    "thumbnail": "assets/thumbnails/sci_fi_rifle.jpg",
+    "format": [
+      "GLB",
+      "FBX"
+    ],
+    "polycount": "18.9K",
+    "rating": 4.7,
+    "reviews": 76,
+    "downloads": 0,
+    "featured": false
+  },
+  {
+    "id": 10,
+    "name": "Modern Bookshelf",
+    "creator": "InteriorViz",
+    "category": "Furniture",
+    "type": "paid",
+    "price": 97000,
+    "description": "Rak buku modern minimalis dengan material kayu oak realistis. Lengkap dengan prop buku dan dekorasi.",
+    "tags": [
+      "furniture",
+      "bookshelf",
+      "interior"
+    ],
+    "model": "assets/models/modern_bookshelf/scene.glb",
+    "thumbnail": "assets/thumbnails/modern_bookshelf.jpg",
+    "format": [
+      "GLTF",
+      "OBJ"
+    ],
+    "polycount": "12.3K",
+    "rating": 4.5,
+    "reviews": 91,
+    "downloads": 0,
+    "featured": false
+  },
+  {
+    "id": 11,
+    "name": "Magic Staff",
+    "creator": "WizardCraft",
+    "category": "Aksesoris",
+    "type": "auction",
+    "price": 0,
+    "startingBid": 120000,
+    "currentBid": 185000,
+    "bidCount": 7,
+    "auctionEndTime": "2026-05-13T12:27:57",
+    "description": "Tongkat sihir dengan kristal bercahaya dan partikel efek aura. Aset eksklusif untuk RPG.",
+    "tags": [
+      "staff",
+      "magic",
+      "weapon"
+    ],
+    "model": "assets/models/magic_staff/scene.glb",
+    "thumbnail": "assets/thumbnails/magic_staff.jpg",
+    "format": [
+      "GLB",
+      "GLTF"
+    ],
+    "polycount": "9.8K",
+    "rating": 4.9,
+    "reviews": 34,
+    "downloads": 0,
+    "featured": true
+  },
+  {
+    "id": 12,
+    "name": "Helicopter",
+    "creator": "TechFly3D",
+    "category": "Kendaraan",
+    "type": "auction",
+    "price": 0,
+    "startingBid": 350000,
+    "currentBid": 420000,
+    "bidCount": 6,
+    "auctionEndTime": "2026-05-13T12:27:57",
+    "description": "helikopter militer dengan detail cockpit dan mesin akurat. Animasi baling-baling real-time.",
+    "tags": [
+      "helicopter",
+      "drone",
+      "vehicle"
+    ],
+    "model": "assets/models/helicopter_drone/scene.glb",
+    "thumbnail": "assets/thumbnails/helicopter_drone.jpg",
+    "format": [
+      "GLTF",
+      "FBX"
+    ],
+    "polycount": "67.2K",
+    "rating": 4.8,
+    "reviews": 52,
+    "downloads": 0,
+    "featured": false
+  }
+]

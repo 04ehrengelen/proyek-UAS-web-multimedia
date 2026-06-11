@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak 3D - Upload Aset Baru</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .was-validated .form-control:invalid, .was-validated .form-select:invalid {
+            border-color: var(--danger);
+            background-image: none;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(0,0,0,0.2) !important;
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(139, 92, 246, 0.25);
+        }
+        .form-select {
+            background-color: rgba(0,0,0,0.1);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        .form-select option {
+            background-color: var(--bg-card);
+            color: white;
+        }
+        .step-indicator {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            display: inline-flex; align-items: center; justify-content: center;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .step-item.active .step-indicator {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 10px rgba(139,92,246,0.5);
+        }
+        .step-item.active .step-text {
+            color: white !important;
+            font-weight: 700 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container container-custom">
+            <a class="navbar-brand" href="index.html">⬡ lapak<span>3D</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Lelang</a></li>
+                    <li class="nav-item"><a class="nav-link active fw-semibold" href="upload-asset.html">Jual Aset</a></li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <a href="index.html#filter" class="nav-icon-link me-3"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="cart.html" class="nav-icon-link me-4 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+                    </a>
+                    
+                    <!-- Dropdown Logged In -->
+                    <div class="dropdown" id="nav-user-dropdown" style="display:none;">
+                        <button class="btn btn-outline-primary-custom dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="color:var(--text-primary); border-color:var(--border);">
+                            <i class="fa-solid fa-user-circle me-2 text-primary-custom"></i><span id="nav-user-name">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="profile.html"><i class="fa-regular fa-id-badge me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="my-bids.html"><i class="fa-solid fa-gavel me-2"></i> Riwayat Tawar</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom active" href="upload-asset.html"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Upload Aset</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item dropdown-item-custom text-danger" href="#" onclick="logoutSimulation()"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container container-custom mt-5 mb-5" style="min-height: 70vh;">
+        
+        <div class="row g-5">
+            <!-- KIRI - Form Upload -->
+            <div class="col-lg-7">
+                <h2 class="fw-bolder mb-2 text-white"><i class="fa-solid fa-cloud-arrow-up text-primary-light me-2"></i> Upload Aset 3D</h2>
+                <p class="text-muted mb-4">Lengkapi informasi di bawah ini untuk mempublikasikan karyamu ke marketplace.</p>
+                
+                <!-- Stepper Visual -->
+                <div class="d-flex justify-content-between mb-5 px-3 py-3 rounded-pill" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+                    <div class="step-item active d-flex align-items-center">
+                        <div class="step-indicator">1</div>
+                        <span class="step-text text-muted fw-semibold d-none d-sm-inline">Info Aset</span>
+                    </div>
+                    <div class="step-item active d-flex align-items-center">
+                        <div class="step-indicator">2</div>
+                        <span class="step-text text-muted fw-semibold d-none d-sm-inline">File Model</span>
+                    </div>
+                    <div class="step-item active d-flex align-items-center">
+                        <div class="step-indicator">3</div>
+                        <span class="step-text text-muted fw-semibold d-none d-sm-inline">Harga</span>
+                    </div>
+                </div>
+
+                <form id="upload-form" novalidate>
+                    <div class="card bg-card border-0 rounded-4 shadow-sm mb-4" style="border: 1px solid var(--border) !important;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4 border-bottom border-secondary pb-2" style="border-color: rgba(51, 65, 85, 0.5) !important;">1. Informasi Dasar</h5>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-muted fw-semibold">Judul Aset <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-title" required placeholder="Cth: Sci-Fi Hoverbike X-9">
+                                <div class="invalid-feedback text-danger">Judul aset wajib diisi.</div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label class="form-label text-muted fw-semibold">Kategori <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="ua-category" required>
+                                        <option value="" disabled selected>Pilih Kategori</option>
+                                        <option value="Karakter">Karakter</option>
+                                        <option value="Kendaraan">Kendaraan</option>
+                                        <option value="Furniture">Furniture</option>
+                                        <option value="Aksesoris">Aksesoris</option>
+                                        <option value="Lingkungan">Lingkungan</option>
+                                    </select>
+                                    <div class="invalid-feedback text-danger">Kategori wajib dipilih.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted fw-semibold">Tags</label>
+                                    <input type="text" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-tags" placeholder="Pisahkan dengan koma (cth: sci-fi, kendaraan)">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-muted fw-semibold">Deskripsi <span class="text-danger">*</span></label>
+                                <textarea class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-desc" rows="4" minlength="50" required placeholder="Jelaskan detail model Anda, jumlah polygon, kecocokan engine, dll..."></textarea>
+                                <div class="invalid-feedback text-danger">Deskripsi minimal 50 karakter.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-card border-0 rounded-4 shadow-sm mb-4" style="border: 1px solid var(--border) !important;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4 border-bottom border-secondary pb-2" style="border-color: rgba(51, 65, 85, 0.5) !important;">2. File & Spesifikasi</h5>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label class="form-label text-muted fw-semibold">Pilih File 3D Model <span class="text-danger">*</span></label>
+                                    <input type="file" id="ua-model-file" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" accept=".gltf,.glb" required>
+                                    <div class="invalid-feedback text-danger">File model wajib dipilih.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-muted fw-semibold">Pilih Thumbnail <span class="text-danger">*</span></label>
+                                    <input type="file" id="ua-thumbnail-file" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" accept="image/*" required>
+                                    <div class="invalid-feedback text-danger">Thumbnail wajib dipilih.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label text-muted fw-semibold">Format Terdukung <span class="text-danger">*</span></label>
+                                <div class="d-flex flex-wrap gap-3 mt-1" id="ua-formats">
+                                    <div class="form-check">
+                                        <input class="form-check-input bg-transparent border-secondary" type="checkbox" value="GLTF" id="fmt1" checked>
+                                        <label class="form-check-label text-white" for="fmt1">GLTF</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input bg-transparent border-secondary" type="checkbox" value="GLB" id="fmt2">
+                                        <label class="form-check-label text-white" for="fmt2">GLB</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input bg-transparent border-secondary" type="checkbox" value="FBX" id="fmt3">
+                                        <label class="form-check-label text-white" for="fmt3">FBX</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input bg-transparent border-secondary" type="checkbox" value="OBJ" id="fmt4">
+                                        <label class="form-check-label text-white" for="fmt4">OBJ</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <label class="form-label text-muted fw-semibold">Polycount <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-polycount" required placeholder="Cth: 24,500">
+                                <div class="invalid-feedback text-danger">Polycount wajib diisi.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card bg-card border-0 rounded-4 shadow-sm mb-5" style="border: 1px solid var(--border) !important;">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4 border-bottom border-secondary pb-2" style="border-color: rgba(51, 65, 85, 0.5) !important;">3. Sistem Penjualan</h5>
+                            
+                            <div class="mb-4">
+                                <div class="btn-group w-100" role="group">
+                                    <input type="radio" class="btn-check" name="ua-type" id="type-free" value="free" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success fw-bold py-2" for="type-free">Gratis</label>
+                                  
+                                    <input type="radio" class="btn-check" name="ua-type" id="type-paid" value="paid" autocomplete="off">
+                                    <label class="btn btn-outline-primary fw-bold py-2" for="type-paid">Berbayar</label>
+                                  
+                                    <input type="radio" class="btn-check" name="ua-type" id="type-auction" value="auction" autocomplete="off">
+                                    <label class="btn btn-outline-warning fw-bold py-2" for="type-auction">Lelang</label>
+                                </div>
+                            </div>
+
+                            <div id="ua-price-group" style="display:none;">
+                                <div class="mb-3">
+                                    <label class="form-label text-muted fw-semibold">Harga Jual (Rp) <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-price" min="1000" placeholder="Minimal Rp 1.000">
+                                </div>
+                            </div>
+
+                            <div id="ua-auction-group" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label text-muted fw-semibold">Harga Awal Lelang (Rp) <span class="text-danger">*</span></label>
+                                        <input type="number" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-auction-price" min="1000" placeholder="Minimal Rp 1.000">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label text-muted fw-semibold">Batas Waktu Berakhir <span class="text-danger">*</span></label>
+                                        <input type="datetime-local" class="form-control border-secondary text-white" style="background-color: rgba(0,0,0,0.1);" id="ua-auction-time">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-submit-upload" class="btn btn-primary-custom w-100 py-3 rounded-pill fw-bold fs-4 shadow-lg hover-lift mb-5"><i class="fa-solid fa-paper-plane me-2"></i> Publikasikan Aset</button>
+                </form>
+            </div>
+
+            <!-- KANAN - Live Preview Card -->
+            <div class="col-lg-5">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fa-solid fa-eye text-primary-light me-2 fs-5"></i>
+                        <h5 class="fw-bold m-0 text-white">Live Preview</h5>
+                    </div>
+                    <p class="text-muted fs-7 mb-4">Preview kartu aset akan terlihat seperti ini di marketplace.</p>
+                    
+                    <!-- Preview Card Structure (mirrors index.html product card) -->
+                    <div class="product-card shadow-lg mx-auto" style="max-width: 380px;">
+                        <div class="position-relative">
+                            <img id="preview-img" src="assets/thumbnails/placeholder.jpg" class="product-img" alt="Preview Image" style="height: 250px; width: 100%; object-fit: cover;">
+                            <span id="preview-badge" class="badge badge-free position-absolute top-0 start-0 m-3">FREE</span>
+                        </div>
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span id="preview-category" class="text-muted fs-7 text-uppercase fw-semibold"><i class="fa-solid fa-tag me-1"></i>Kategori</span>
+                                <span class="text-warning fs-7"><i class="fa-solid fa-star me-1"></i>0.0</span>
+                            </div>
+                            <h5 id="preview-title" class="fw-bold mb-3 text-truncate text-white">Judul Aset</h5>
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary">
+                                <div id="preview-price" class="fw-bolder fs-5 text-success">Gratis</div>
+                                <button class="btn btn-sm btn-outline-secondary border-0" disabled><i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                            <!-- Countdown preview khusus lelang -->
+                            <div id="preview-countdown-box" class="mt-2 text-center" style="display:none;">
+                                <span class="badge bg-warning bg-opacity-25 text-warning border border-warning border-opacity-50 w-100 py-2 fs-7 font-monospace">⏳ Berakhir dalam: 0h 0m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer-custom mt-auto">
+        <div class="container container-custom">
+            <hr class="mt-5 mb-4" style="border-color:var(--border);">
+            <div class="text-center text-muted fs-7 pb-4">
+                &copy; 2026 Lapak 3D. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // 1. Guard Check isCreator
+            const user = window.getUser();
+            if (!user || !user.isCreator) {
+                window.location.href = "register-creator.html";
+                return;
+            }
+
+            // Atur min attribute datetime-local ke hari ini
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            $('#ua-auction-time').attr('min', now.toISOString().slice(0,16));
+
+            // 2. Tampilkan Input Dinamis Berdasarkan Tipe
+            $('input[name="ua-type"]').on('change', function() {
+                const type = $(this).val();
+                
+                $('#ua-price-group').hide();
+                $('#ua-auction-group').hide();
+                $('#ua-price').removeAttr('required');
+                $('#ua-auction-price').removeAttr('required');
+                $('#ua-auction-time').removeAttr('required');
+                
+                $('#preview-countdown-box').hide();
+                
+                if (type === 'paid') {
+                    $('#ua-price-group').slideDown();
+                    $('#ua-price').prop('required', true);
+                    
+                    $('#preview-badge').removeClass('badge-free badge-auction').addClass('badge-paid').text('PREMIUM');
+                    updatePricePreview();
+                } else if (type === 'auction') {
+                    $('#ua-auction-group').slideDown();
+                    $('#ua-auction-price').prop('required', true);
+                    $('#ua-auction-time').prop('required', true);
+                    
+                    $('#preview-badge').removeClass('badge-free badge-paid').addClass('badge-auction').html('<i class="fa-solid fa-gavel me-1"></i> LELANG');
+                    $('#preview-countdown-box').show();
+                    updatePricePreview();
+                } else {
+                    $('#preview-badge').removeClass('badge-paid badge-auction').addClass('badge-free').text('FREE');
+                    $('#preview-price').removeClass('text-primary-light text-warning').addClass('text-success').text('Gratis');
+                }
+            });
+
+            // 3. Live Preview Listeners
+            function updatePricePreview() {
+                const type = $('input[name="ua-type"]:checked').val();
+                if (type === 'paid') {
+                    const price = $('#ua-price').val() || 0;
+                    $('#preview-price').removeClass('text-success text-warning').addClass('text-primary-light').text(window.formatRupiah(price));
+                } else if (type === 'auction') {
+                    const price = $('#ua-auction-price').val() || 0;
+                    $('#preview-price').removeClass('text-success text-primary-light').addClass('text-warning').text(window.formatRupiah(price));
+                }
+            }
+
+            $('#ua-title').on('input', function() {
+                $('#preview-title').text($(this).val() || 'Judul Aset');
+            });
+
+            $('#ua-category').on('change', function() {
+                $('#preview-category').html('<i class="fa-solid fa-tag me-1"></i>' + ($(this).val() || 'Kategori'));
+            });
+
+            $('#ua-price, #ua-auction-price').on('input', updatePricePreview);
+
+            // Variable to hold uploaded base64 data
+            let uploadedThumbnail = null;
+            let uploadedModel = null;
+
+
+
+            $('#ua-model-file').on('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const ext = file.name.split('.').pop().toUpperCase();
+                    $('#ua-formats input[type="checkbox"]').prop('checked', false);
+                    $('#ua-formats input[type="checkbox"]').filter(function() {
+                        return $(this).val() === ext;
+                    }).prop('checked', true);
+
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        uploadedModel = evt.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+
+
+            $('#ua-thumbnail-file').on('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        uploadedThumbnail = evt.target.result;
+                        $('#preview-img').attr('src', uploadedThumbnail);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // 4. Form Submit & Validasi
+            $('#upload-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const form = this;
+                
+                const descVal = $('#ua-desc').val();
+                if (descVal.length > 0 && descVal.length < 50) {
+                    $('#ua-desc').get(0).setCustomValidity('Minimal 50 karakter');
+                } else {
+                    $('#ua-desc').get(0).setCustomValidity('');
+                }
+
+                if (!form.checkValidity()) {
+                    e.stopPropagation();
+                    $(form).addClass('was-validated');
+                    window.showToast("Cek kembali isian form Anda.", true);
+                    return;
+                }
+
+                // Gather checked formats
+                let formats = [];
+                $('#ua-formats input[type="checkbox"]:checked').each(function() {
+                    formats.push($(this).val());
+                });
+                
+                if (formats.length === 0) {
+                    window.showToast("Pilih minimal satu format 3D.", true);
+                    return;
+                }
+
+                // Simpan upload di browser agar tetap bisa jalan dari Live Server tanpa backend.
+                const type = $('input[name="ua-type"]:checked').val();
+                let price = 0;
+                let auctionEndTime = null;
+                
+                if (type === 'paid') {
+                    price = parseInt($('#ua-price').val()) || 0;
+                } else if (type === 'auction') {
+                    price = parseInt($('#ua-auction-price').val()) || 0;
+                    auctionEndTime = new Date($('#ua-auction-time').val()).toISOString();
+                }
+
+                const tagsStr = $('#ua-tags').val();
+                const tagsArr = tagsStr.split(',').map(t => t.trim()).filter(t => t !== "");
+
+                const modelFile = $('#ua-model-file')[0].files[0];
+                if (!modelFile) {
+                    window.showToast("Silakan pilih file 3D model (.glb/.gltf) Anda.", true);
+                    return;
+                }
+
+                const thumbFile = $('#ua-thumbnail-file')[0].files[0];
+                if (!thumbFile) {
+                    window.showToast("Silakan pilih gambar preview/thumbnail Anda.", true);
+                    return;
+                }
+
+                $('#btn-submit-upload').prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin me-2"></i> Mengunggah...');
+
+                const productData = {
+                    name: $('#ua-title').val(),
+                    creator: user.username,
+                    type: type,
+                    price: type === 'free' ? 0 : price,
+                    currentBid: type === 'auction' ? price : 0,
+                    startingBid: type === 'auction' ? price : 0,
+                    category: $('#ua-category').val(),
+                    tags: tagsArr,
+                    polycount: $('#ua-polycount').val(),
+                    format: formats,
+                    formats: formats,
+                    description: $('#ua-desc').val(),
+                    rating: 0.0,
+                    reviews: 0,
+                    downloads: 0,
+                    auctionEndTime: auctionEndTime
+                };
+
+                window.saveUploadedAsset(productData, modelFile, thumbFile)
+                    .then(function(savedProduct) {
+                        if (type === 'auction') {
+                            let bidsObj = window.getBids();
+                            bidsObj[savedProduct.id] = {
+                                currentBid: price,
+                                history: []
+                            };
+                            window.saveBids(bidsObj);
+                        }
+
+                        window.showToast("Aset berhasil dipublikasikan dan tersimpan di browser Live Server!");
+
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 1200);
+                    })
+                    .catch(function(error) {
+                        console.error('Gagal menyimpan upload lokal:', error);
+                        window.showToast("Gagal menyimpan aset di browser. Coba pakai file yang lebih kecil atau bersihkan storage browser.", true);
+                        $('#btn-submit-upload').prop('disabled', false).html('<i class="fa-solid fa-paper-plane me-2"></i> Publikasikan Aset');
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapak 3D - Riwayat Tawaran Lelang</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .filter-bid-btn { transition: all 0.2s ease; opacity: 0.7; }
+        .filter-bid-btn.active { opacity: 1; border-width: 2px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+        <div class="container container-custom">
+            <a class="navbar-brand" href="index.html">⬡ lapak<span>3D</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Explore</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="index.html#filter">Lelang</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="upload-asset.html">Jual Aset</a></li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <a href="index.html#filter" class="nav-icon-link me-3"><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href="cart.html" class="nav-icon-link me-4 position-relative">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-badge" class="cart-badge" style="display:none;">0</span>
+                    </a>
+                    
+                    <!-- Guest -->
+                    <button id="nav-login-btn" class="btn btn-primary-custom fw-bold" onclick="loginSimulation()">Masuk / Daftar</button>
+                    
+                    <!-- Logged In -->
+                    <div class="dropdown" id="nav-user-dropdown" style="display:none;">
+                        <button class="btn btn-outline-primary-custom dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" style="color:var(--text-primary); border-color:var(--border);">
+                            <i class="fa-solid fa-user-circle me-2 text-primary-custom"></i><span id="nav-user-name">User</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                            <li><a class="dropdown-item dropdown-item-custom" href="profile.html"><i class="fa-regular fa-id-badge me-2"></i> Profil</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom active" href="my-bids.html"><i class="fa-solid fa-gavel me-2"></i> Riwayat Tawar</a></li>
+                            <li><a class="dropdown-item dropdown-item-custom" href="upload-asset.html"><i class="fa-solid fa-cloud-arrow-up me-2"></i> Upload Aset</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item dropdown-item-custom text-danger" href="#" onclick="logoutSimulation()"><i class="fa-solid fa-right-from-bracket me-2"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container container-custom mt-5 mb-5" style="min-height: 60vh;">
+        <h2 class="fw-bolder mb-4">Riwayat Tawaran Lelang</h2>
+        
+        <!-- Filter tombol -->
+        <div class="d-flex flex-wrap gap-2 mb-4 p-3 rounded-4" id="bids-filter" style="background-color: var(--bg-card); border: 1px solid var(--border);">
+            <button class="btn btn-sm btn-outline-light filter-bid-btn active" data-filter="all">Semua</button>
+            <button class="btn btn-sm btn-outline-warning filter-bid-btn" data-filter="active">Aktif</button>
+            <button class="btn btn-sm btn-outline-success filter-bid-btn" data-filter="win">Menang</button>
+            <button class="btn btn-sm btn-outline-danger filter-bid-btn" data-filter="lose">Kalah</button>
+        </div>
+        
+        <div id="bids-list" class="d-flex flex-column gap-3">
+            <!-- Data riwayat lelang akan dirender oleh Javascript -->
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer-custom mt-auto">
+        <div class="container container-custom">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bolder fs-4">⬡ lapak<span style="color:var(--primary);">3D</span></h5>
+                    <p class="footer-desc mt-3">Marketplace aset 3D premium untuk kreator dan developer. Temukan model berkualitas tinggi untuk game, animasi, arsitektur, dan metaverse.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold">Navigasi</h5>
+                    <a href="index.html" class="footer-link">Beranda</a>
+                    <a href="index.html#filter" class="footer-link">Eksplorasi Katalog</a>
+                    <a href="upload-asset.html" class="footer-link">Jual Aset 3D</a>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <h5 class="fw-bold">Kontak Kami</h5>
+                    <p class="footer-desc mb-2"><i class="fa-solid fa-envelope me-2 text-muted"></i> support@lapak3d.com</p>
+                    <p class="footer-desc"><i class="fa-solid fa-location-dot me-2 text-muted"></i> Jakarta Selatan, Indonesia</p>
+                </div>
+            </div>
+            <hr class="mt-5 mb-4" style="border-color:var(--border);">
+            <div class="text-center text-muted fs-7">
+                &copy; 2026 Lapak 3D. Seluruh Hak Cipta Dilindungi.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Confetti JS -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Global JS -->
+    <script src="js/main.js"></script>
+    <!-- Page Specific JS -->
+    <script src="js/my-bids.js"></script>
+</body>
+</html>
